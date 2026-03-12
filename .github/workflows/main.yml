@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       agent_name:
-        description: 'Agent name'
+        description: Agent name
         required: true
-        default: 'zelucian'
+        default: zelucian
       agent_description:
-        description: 'Agent description'
+        description: Agent description
         required: true
-        default: 'zelucian AI Agent'
+        default: zelucian AI Agent
 
 jobs:
   verify:
@@ -33,10 +33,10 @@ jobs:
           cd scripts
           npm install
 
-      - name: Create new Ethereum Identity
+      - name: Create Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
 
       - name: Link Human to Agent
         run: |
           node scripts/manualLinkHumanToAgent.js \
-          --challenge '{"name": "${{ github.event.inputs.agent_name }}", "description": "${{ github.event.inputs.agent_description }}"}'
+          --challenge "{\"name\":\"${{ github.event.inputs.agent_name }}\",\"description\":\"${{ github.event.inputs.agent_description }}\"}"
